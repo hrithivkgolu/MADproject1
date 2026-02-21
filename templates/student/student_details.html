@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <style>
+       :root {
+            --primary-color: #4a90e2;
+            --primary-hover: #357abd;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --border-color: #dcdde1;
+            --text-main: #2f3640;
+        }
+
+       body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+       .form-container {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+       h2 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            font-weight: 600;
+        }
+
+       .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+       label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+       input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box; /* Prevents padding from breaking width */
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+       input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+        }
+
+       button {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            margin-top: 1rem;
+        }
+
+       button:hover {
+            background-color: var(--primary-hover);
+        }
+
+       button:active {
+            transform: scale(0.98);
+        }
+
+        /* Grouping small inputs together */
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+    </style>
+</head>
+<body>
+       <div class="form-container">
+        <h2>Student Registration</h2>
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="student_name">Full Name</label>
+                <input type="text" id="student_name" name="student_name" placeholder="John Doe" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="john@university.edu" required>
+            </div>
+
+            <div class="form-group">
+                <label for="course">Course/Major</label>
+                <input type="text" id="course" name="course" placeholder="Computer Science" required>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="cgpa">Current CGPA</label>
+                    <input type="number" step="0.01" id="cgpa" name="cgpa" placeholder="4.00" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="graduation_year">Graduation Year</label>
+                    <input type="number" id="graduation_year" name="graduation_year" placeholder="2026" required>
+                </div>
+            </div>
+
+            <button type="submit">
+                Register Student
+            </button>
+        </form>
+    </div>
+
+
+    
+</body>
+</html>

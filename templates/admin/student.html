@@ -1,0 +1,30 @@
+<h2>Student Data</h2>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Student_id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Course</th>
+        <th>Graduation</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for c in student %}
+    <tr>
+        <td>{{ c[0] }}</td>
+        <td>{{ c[1] }}</td>
+        <td>{{ c[2] }}</td>
+        <td>{{ c[3] }}</td>
+        <td>{{ c[4] }}</td>
+
+        <td>
+            <a href="/admin/student/{{ c[0] }}/delete"
+               onclick="return confirm('Delete this student?');">
+                Delete
+            </a>
+
+        </td>
+    </tr>
+    {% endfor %}
+</table>

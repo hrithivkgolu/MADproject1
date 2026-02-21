@@ -1,0 +1,30 @@
+<h2>Company Requests</h2>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>ID</th>
+        <th>Company</th>
+        <th>HR Name</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for c in drive %}
+    <tr>
+        <td>{{ c[0] }}</td>
+        <td>{{ c[1] }}</td>
+        <td>{{ c[2] }}</td>
+        <td>{{ c[3] }}</td>
+        <td>{{ c[4] }}</td>
+
+        <td>
+            <a href="/admin/drive/{{ c[0] }}/delete"
+               onclick="return confirm('Delete this drive?');">
+                Delete
+            </a>
+
+        </td>
+    </tr>
+    {% endfor %}
+</table>

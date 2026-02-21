@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #f1f5f9;
+        }
+
+        .grid {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .count {
+            font-size: 40px;
+            font-weight: bold;
+            color: #0f172a;
+        }
+
+        .label {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #64748b;
+        }
+        .search-box {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .search-box input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .search-box button {
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            background-color: #0f172a;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .company-list {
+            margin: 20px;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .company-list h3 {
+            margin-top: 0;
+        }
+
+        .company-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .company-item:last-child {
+            border-bottom: none;
+        }
+
+        .unapproved {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 style="padding:20px;">
+        Dashboard Overview
+    </h2>
+    <div>
+        <h2>Welcome {{student[2]}}</h2>
+    </div>
+    <div class="search-box">
+        <form method="get" action="{{ url_for('overview') }}">
+            <input type="text" name="search" placeholder="Search by name or company" value="{{ search_query }}">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="grid">
+
+        <div class="card">
+            <div class="count">{{ students }}</div>
+            <div class="label">Students</div>
+        </div>
+
+        <div class="card">
+            <div class="count">{{ companies }}</div>
+            <div class="label">Companies</div>
+        </div>
+
+        <div class="card">
+            <div class="count">{{ drives }}</div>
+            <div class="label">Placement Drives</div>
+        </div>
+
+    </div>
+
+    {% if unapproved %}
+    <div class="company-list">
+        <h3>Unapproved Companies</h3>
+        {% for c in unapproved %}
+            <div class="company-item unapproved">
+                {{ c.company_name }} - HR: {{ c.hr_name }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</body>
+</html>
+
+<!-- <div class="dashboard-card">
+        <h2>Welcome {{student[2]}}</h2>
+
+        {% if student %}
+            <div class="info-group">
+                <span class="label">Database ID</span>
+                <span class="value">#{{ student }}</span>
+            </div>
+
+            <div class="info-group">
+                <span class="label">Full Name</span>
+                <span class="value">{{ student[1] }}</span>
+            </div>
+
+            <div class="info-group">
+                <span class="label">Major/Course</span>
+                <span class="value">{{ student[2] }}</span>
+            </div>
+
+            <div class="info-group">
+                <span class="label">Email Address</span>
+                <span class="value">{{ student[3] }}</span>
+            </div>
+        {% else %}
+            <p class="empty-state">No student information available.</p>
+        {% endif %}
+
+        <a href="/" class="back-link">← Back to Home</a>
+    </div>
+ -->

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #f5f0f9;
+        }
+
+        .grid {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .count {
+            font-size: 40px;
+            font-weight: bold;
+            color: #0f172a;
+        }
+
+        .label {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #64748b;
+        }
+        .search-box {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .search-box input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .search-box button {
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            background-color: #0f172a;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .company-list {
+            margin: 20px;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .company-list h3 {
+            margin-top: 0;
+        }
+
+        .company-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .company-item:last-child {
+            border-bottom: none;
+        }
+
+        .unapproved {
+            color: red;
+            font-weight: bold;
+        }
+        .company-row {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .label {
+            width: 25%;
+            color: #dc2626;         
+            font-weight: bold;
+        }
+
+        .value {
+            width: 25%;
+            color: #000000;        
+        }
+        .action-buttons {
+            width: 20%;
+            display: flex;
+            gap: 12px;         
+            justify-content: flex-end;
+        }
+
+        .accept-btn {
+            background-color: #16a34a;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .accept-btn:hover {
+            background-color: #15803d;
+        }
+
+        .delete-btn {
+            background-color: #dc2626;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .delete-btn:hover {
+            background-color: #b91c1c;
+        }
+        .blacklist-btn {
+            background-color: #000000;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .blacklist-btn:hover {
+            background-color: #00bb00;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="company-list">
+        <h2>Companies</h2>
+        {% for c in companies %}
+            <div class="company-item unapproved">
+                <div class="company-row">
+                    <span class="label">Company:</span>
+                    <span class="value">{{ c }}</span>
+
+                    <span class="label">HR:</span>
+                    <span class="value">{{ c[4] }}</span>
+
+                    <span class="label">Created At:</span>
+                    <span class="value">{{ c[6] }}</span>
+                    <div class="action-buttons">
+                        <a href="/admin/company/{{c[0]}}/approve">
+                            <button class="accept-btn">Accept</button>
+                        </a>
+                        <a href="/admin/company/{{c[0]}}/blacklist">
+                            <button class="blacklist-btn">Reject</button>
+                        </a> 
+                        <a href="/admin/company/{{c[0]}}/delete">
+                            <button class="delete-btn">Delete</button>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+

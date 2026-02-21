@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --primary-hover: #357abd;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --border-color: #dcdde1;
+            --text-main: #2f3640;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* CARD */
+        .container {
+            background: white;
+            padding: 50px 60px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .form-container {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+
+        h1 {
+            margin-bottom: 10px;
+            color: #0f172a;
+        }
+
+        h3 {
+            margin-bottom: 30px;
+            color: #475569;
+            font-weight: normal;
+        }
+
+        input{
+            margin-bottom: 10px;
+        }
+        .account-type {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        /* Button Row */
+        .type-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 8px;
+        }
+
+        /* Button Style */
+        .type-btn {
+            padding: 10px 20px;
+            border: 2px solid #2563eb;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            background: white;
+            transition: 0.2s;
+        }
+
+        /* Hover */
+        .type-btn:hover {
+            background: #eff6ff;
+        }
+
+        /* Selected */
+        input[type="radio"]:checked + .type-btn {
+            background: #2563eb;
+            color: white;
+        }
+        .top-left-logo {
+            position: absolute;   
+            top: 20px;            
+            left: 20px;           
+            width: 70px;         
+            height: auto;
+        }
+        .flash-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50; /* green */
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            z-index: 1000;
+            font-family: sans-serif;
+            animation: fadeOut 3s forwards;
+        }
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; display: none; }
+        }
+        h2 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            font-weight: 600;
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box; /* Prevents padding from breaking width */
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+        }
+        button {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+    <div>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+              {% for message in messages %}
+                <div class="flash-message">{{ message }}</div>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    </div>
+    <a href='/'>
+        <img src="{{ url_for('static', filename='assets/images/logosecurea.png') }}" 
+         class="top-left-logo" 
+         alt="University Logo">
+    </a>
+
+    <div class="container">
+        <h2>Make a new account</h2>
+
+        <form method="POST">
+            <div class="account-type">
+                <label>Select Account Type:</label>
+                <div class="type-buttons">
+                    <input type="radio" name="account_type"
+                           id="student" value="student"
+                           checked hidden>
+
+                    <label for="student" class="type-btn">
+                        Student
+                    </label>
+
+
+                    <input type="radio" name="account_type"
+                           id="company" value="company"
+                           hidden>
+
+                    <label for="company" class="type-btn">
+                        Company
+                    </label>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="username">User Name</label>
+                <input type="text" id="username" name="username" placeholder="UserName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Jhon" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="john@university.edu" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <button type="submit">Create Account</button>
+
+        </form>
+        
+
+        <a href = "auth">
+            already have an account?
+        </a>
+        <p>{{ message }}</p>
+    </div>
+
+</body>
+</html>

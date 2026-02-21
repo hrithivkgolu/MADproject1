@@ -1,0 +1,32 @@
+<h2>Users</h2>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Created_at</th>
+        <th>Account_type</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for c in users[1:] %}
+    <tr>
+        <td>{{ c[0] }}</td>
+        <td>{{ c[1] }}</td>
+        <td>{{ c[2] }}</td>
+        <td>{{ c[3] }}</td>
+        <td>{{ c[4] }}</td>
+        <td>{{ c[5] }}</td>
+
+        <td>
+            <a href="/admin/users/{{ c[0] }}/delete"
+               onclick="return confirm('Delete this user?');">
+                Delete
+            </a>
+
+        </td>
+    </tr>
+    {% endfor %}
+</table>
